@@ -1,0 +1,139 @@
+run:
+  concurrency: 4
+
+  timeout: 1m
+
+  issues-exit-code: 1
+
+  tests: true
+
+  skip-dirs-use-default: false
+
+  modules-download-mode: readonly
+
+  allow-parallel-runners: false 
+
+  go: ""
+
+
+output:
+  format: colored-line-number:lint.txt
+
+  print-linter-name: true
+
+  sort-results: true
+
+  uniq-by-line: false
+
+  path-prefix: ""
+
+  sort-order:
+    - linter
+    - severity
+    - file
+
+
+issues:
+  max-issues-per-linter: 0
+
+  max-same-issues: 0
+
+  new: false
+
+  fix: false
+
+
+linters:
+  fast: false
+
+  enable:
+    # Check for pass []any as any in variadic func(...any).
+    - asasalint
+
+    # Checks whether HTTP response body is closed successfully.
+    - bodyclose
+
+    # Make u to watch that u follows canonical HTTP header
+    - canonicalheader
+
+    # Check whether the function uses a non-inherited context.
+    - contextcheck
+
+    # Check for two durations multiplied together. Like when u forget that u have already multiply on time.Second for instance
+    - durationcheck
+
+    # Tool for code clone detection
+    - dupl
+
+    # Forces to not skip error check.
+    - errcheck
+
+    # Suggests to use `%w` for error-wrapping.
+    - errorlint
+
+    # Checks that sentinel errors are prefixed
+    - errname
+
+    # Checks for pointers to enclosing loop variables.
+    - exportloopref
+
+    - gocritic
+
+    # Control imports order
+    - gci
+
+    - gofmt
+    - gofumpt
+    - goimports
+
+    # Linter that specializes in simplifying code.
+    - gosimple
+
+    - govet
+
+    # Detects when assignments to existing variables are not used
+    - ineffassign
+
+    # Finds naked/bare returns and requires change them
+    - nakedret
+
+    # Finds sending HTTP request without context.Context
+    - noctx
+
+    # Finds slices that could potentially be pre-allocated
+    - prealloc
+
+    # Checks that package variables are not reassigned
+    - reassign
+
+    # Check struct tags
+    - tagliatelle
+
+    # Test-related checks
+    - tenv
+    - testableexamples
+    - thelper
+    - tparallel
+
+    # Remove unnecessary type conversions, make code cleaner
+    - unconvert
+
+    - unused
+
+    # Finds wasted assignment statements
+    - wastedassign
+
+linters-settings:
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - experimental
+      - opinionated
+      - performance
+      - style
+    disabled-checks:
+      - hugeParam
+      - rangeExprCopy
+      - rangeValCopy
+
+
